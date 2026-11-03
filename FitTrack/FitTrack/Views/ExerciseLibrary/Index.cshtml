@@ -1,0 +1,38 @@
+@model FitTrack.Models.ExerciseLibraryViewModel
+@{ ViewData["Title"] = "Exercise library"; }
+<header class="page-heading-row"><div><p class="eyebrow">DISCOVER YOUR NEXT MOVE</p><h1>Exercise library</h1><p class="page-subtitle">Explore real exercise information from wger, then use suitable movements in your plans.</p></div><a class="btn btn-primary" asp-controller="WorkoutPlans" asp-action="Manual">Build a plan</a></header>
+@if (!string.IsNullOrWhiteSpace(Model.Error)) { <div class="alert alert-warning" role="status">@Model.Error</div> }
+@if (Model.UsingCachedData) { <p class="catalog-status"><span class="status-indicator"></span> Showing the most recent cached exercise catalog.</p> }
+<form method="get" asp-action="Index" class="exercise-filter-panel">
+    <div class="filter-field filter-search"><label for="search">Exercise name</label><input id="search" name="search" value="@Model.Search" class="form-control" placeholder="Search exercises…" /></div>
+    <div class="filter-field"><label for="muscle">Muscle group</label><select id="muscle" name="muscle" class="form-select"><option value="">All muscles</option>@foreach (var value in Model.Muscles) { <option selected="@(Model.Muscle == value ? "selected" : null)" value="@value">@value</option> }</select></div>
+    <div class="filter-field"><label for="category">Category</label><select id="category" name="category" class="form-select"><option value="">All categories</option>@foreach (var value in Model.Categories) { <option selected="@(Model.Category == value ? "selected" : null)" value="@value">@value</option> }</select></div>
+    <div class="filter-field"><label for="equipment">Equipment</label><select id="equipment" name="equipment" class="form-select"><option value="">Any equipment</option>@foreach (var value in Model.EquipmentOptions) { <option selected="@(Model.Equipment == value ? "selected" : null)" value="@value">@value</option> }</select></div>
+    <div class="d-flex gap-2"><button class="btn btn-primary filter-submit" type="submit">Apply filters</button><a class="btn btn-outline-secondary" asp-action="Index">Clear</a></div>
+</form>
+<div class="section-title-row exercise-results-heading"><h2>@Model.TotalItems exercises</h2><span>Page @Model.Page of @Model.PageCount</span><a asp-controller="WorkoutPlans" asp-action="Manual">Create a manual plan <span aria-hidden="true">→</span></a></div>
+@if (Model.Exercises.Count == 0) { <p class="empty-state">No exercises match these filters. Try a different search or remove one of the filters.</p> }
+<div class="row g-3 exercise-library-grid">
+@foreach (var item in Model.Exercises)
+{
+    <div class="col-md-6 col-xxl-4"><article class="exercise-library-card">
+        @if (!string.IsNullOrWhiteSpace(item.ImageThumbnailUrl ?? item.ImageUrl)) { <img src="@(item.ImageThumbnailUrl ?? item.ImageUrl)" alt="@item.Name" loading="lazy" /> }
+        else { <div class="exercise-image-placeholder" aria-hidden="true"><span>FIT<span>TRACK</span></span></div> }
+        <div class="exercise-card-content">
+            <div class="exercise-card-kicker"><span>@(item.Category.Length == 0 ? "MOVEMENT" : item.Category)</span><span>@(item.Equipment.Count == 0 ? "BODYWEIGHT" : string.Join(" · ", item.Equipment))</span></div>
+            <h3>@item.Name</h3>
+            @if (item.Muscles.Count > 0) { <div class="exercise-muscle-tags">@foreach (var muscle in item.Muscles.Take(4)) { <span>@muscle</span> }</div> }
+            @if (!string.IsNullOrWhiteSpace(item.Description)) { <details class="exercise-instructions"><summary>How to do it</summary><div>@foreach (var paragraph in item.Description.Split("\n", StringSplitOptions.RemoveEmptyEntries)) { <p>@paragraph</p> }</div></details> }
+            <div class="exercise-attribution"><span>Exercise catalog · wger</span>@if (!string.IsNullOrWhiteSpace(item.LicenseAuthor)) { <span>Image: @item.LicenseAuthor</span> } @if (!string.IsNullOrWhiteSpace(item.LicenseUrl)) { <a href="@item.LicenseUrl" rel="noopener noreferrer">Source / license</a> }</div>
+        </div>
+    </article></div>
+}
+</div>
+@if (Model.PageCount > 1)
+{
+    <nav class="mt-4" aria-label="Exercise library pages"><ul class="pagination justify-content-center">
+        <li class="page-item @(Model.Page == 1 ? "disabled" : "")"><a class="page-link" asp-action="Index" asp-route-search="@Model.Search" asp-route-muscle="@Model.Muscle" asp-route-category="@Model.Category" asp-route-equipment="@Model.Equipment" asp-route-page="@(Model.Page - 1)" aria-label="Previous page">Previous</a></li>
+        <li class="page-item disabled"><span class="page-link">Page @Model.Page of @Model.PageCount</span></li>
+        <li class="page-item @(Model.Page == Model.PageCount ? "disabled" : "")"><a class="page-link" asp-action="Index" asp-route-search="@Model.Search" asp-route-muscle="@Model.Muscle" asp-route-category="@Model.Category" asp-route-equipment="@Model.Equipment" asp-route-page="@(Model.Page + 1)" aria-label="Next page">Next</a></li>
+    </ul></nav>
+}

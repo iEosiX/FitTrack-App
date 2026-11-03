@@ -1,0 +1,10 @@
+@model ErrorViewModel
+@{ ViewData["Title"] = "Something went wrong"; }
+<section class="empty-state error-state">
+    <div class="empty-state-mark" aria-hidden="true">!</div>
+    <span class="eyebrow">UNEXPECTED ERROR</span>
+    <h1 class="h3">We couldn’t complete that request</h1>
+    <p>Try again in a moment. If the problem continues, share the support reference below.</p>
+    @if (Model.ShowRequestId) { <p class="small text-secondary">Support reference: <code>@Model.RequestId</code></p> }
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Return to FitTrack</a>
+</section>

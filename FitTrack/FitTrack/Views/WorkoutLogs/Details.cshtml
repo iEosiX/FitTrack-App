@@ -1,0 +1,12 @@
+@model FitTrack.Models.WorkoutLog
+@{ ViewData["Title"] = "Workout entry"; }
+<header class="page-header"><div class="page-header-copy"><a class="back-link" asp-action="Index">← Workout history</a><span class="eyebrow d-block mt-3">WORKOUT ENTRY</span><h1>@Model.ExerciseName</h1><p>@Model.CompletedAt.ToLocalTime().ToString("MMMM d, yyyy · h:mm tt")</p></div><div class="page-actions"><form asp-action="Delete" asp-route-id="@Model.Id" method="post" data-confirm="Delete this entry from your workout history?"><button type="submit" class="btn btn-outline-danger">Delete entry</button></form></div></header>
+<section class="app-card form-card">
+    <dl class="details-list">
+        <dt>Sets completed</dt><dd>@Model.SetsCompleted</dd>
+        <dt>Repetitions per set</dt><dd>@Model.RepetitionsCompleted</dd>
+        <dt>External weight</dt><dd>@Model.WeightUsed kg</dd>
+        <dt>Plan</dt><dd>@(Model.WorkoutPlan?.Name ?? "Individual entry")</dd>
+        <dt>Notes</dt><dd>@(string.IsNullOrWhiteSpace(Model.Notes) ? "No notes" : Model.Notes)</dd>
+    </dl>
+</section>
