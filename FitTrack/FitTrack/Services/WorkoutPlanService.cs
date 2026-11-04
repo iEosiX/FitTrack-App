@@ -60,11 +60,29 @@ public sealed class WorkoutPlanService(AppDbContext db, IAITrainingService ai) :
         if (!aiResult.Success) return new(null, aiResult.Error ?? "The AI plan could not be generated.");
         if (!TryParseDraft(aiResult.Text!, eligible, days, out var planName, out var planExercises, out var error)) return new(null, error);
 
-        var plan = new WorkoutPlan { UserProfileId = profile.Id, Name = planName.Length > 0 ? planName : "AI training plan", Goal = profile.Goal, IsAiGenerated = true, IsActive = false };
+        planName = await MakeUniquePlanNameAsync(profile.Id, planName, cancellationToken);
+        var plan = new WorkoutPlan { UserProfileId = profile.Id, Name = planName, Goal = profile.Goal, IsAiGenerated = true, IsActive = false };
         foreach (var item in planExercises) plan.PlanExercises.Add(item);
         await db.WorkoutPlans.AddAsync(plan, cancellationToken);
         await db.SaveChangesAsync(cancellationToken);
         return new(plan, null);
+    }
+
+    private async Task<string> MakeUniquePlanNameAsync(int userProfileId, string candidate, CancellationToken cancellationToken)
+    {
+        var baseName = string.IsNullOrWhiteSpace(candidate) ? "AI training plan" : candidate.Trim();
+        var existingNames = await db.WorkoutPlans.AsNoTracking()
+            .Where(plan => plan.UserProfileId == userProfileId)
+            .Select(plan => plan.Name)
+            .ToListAsync(cancellationToken);
+        var names = existingNames.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        if (!names.Contains(baseName)) return baseName;
+
+        for (var suffix = 2; ; suffix++)
+        {
+            var uniqueName = $"{baseName} ({suffix})";
+            if (!names.Contains(uniqueName)) return uniqueName;
+        }
     }
 
     public static bool IsEquipmentAvailable(ExerciseSummary exercise, IReadOnlyCollection<string> profileEquipment)

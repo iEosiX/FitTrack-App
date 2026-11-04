@@ -180,6 +180,7 @@ public sealed class WorkoutPlansController(AppDbContext db, IExerciseApiService 
                 RepetitionsCompleted = item.RepetitionsCompleted, WeightUsed = item.WeightUsed, Notes = item.Notes?.Trim() ?? string.Empty
             });
         }
+        plan.IsActive = false;
         await db.SaveChangesAsync(cancellationToken);
         TempData["WorkoutSaved"] = "Workout saved to your history.";
         return RedirectToAction("Index", "Progress", new { date = DateTime.Now.ToString("yyyy-MM-dd") });
