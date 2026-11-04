@@ -957,11 +957,11 @@ html[data-theme="light"] {
     --ft-slate: #526f7d;
     --ft-emerald: #08745f;
     --ft-text: #203a40;
-    --ft-muted: #61777c;
+    --ft-muted: #52676c;
     --ft-border: rgba(36, 75, 82, .16);
     --bs-body-bg: #f1f5f6;
     --bs-body-color: #203a40;
-    --bs-secondary-color: #61777c;
+    --bs-secondary-color: #52676c;
     --bs-tertiary-bg: #f7fafb;
     --bs-border-color: rgba(36, 75, 82, .16);
     --bs-primary: #0b8589;
@@ -980,11 +980,11 @@ html[data-theme="light"] .sidebar-user, html[data-theme="light"] .app-nav-link, 
 html[data-theme="light"] .app-nav-link:hover, html[data-theme="light"] .app-nav-link:focus-visible { color: #075e61; background: rgba(11,133,137,.08); }
 html[data-theme="light"] .app-nav-link[aria-current="page"] { color: #075e61; background: linear-gradient(95deg,rgba(11,133,137,.14),rgba(11,133,137,.035)); box-shadow: inset 2px 0 #0b8589; }
 html[data-theme="light"] .sidebar-logout:hover { color: #183b40; background: rgba(11,133,137,.06); }
-html[data-theme="light"] .sidebar-section-label, html[data-theme="light"] .eyebrow { color: #617b80; }
-html[data-theme="light"] .sidebar-footer, html[data-theme="light"] .app-footer { color: #73878b; }
+html[data-theme="light"] .sidebar-section-label, html[data-theme="light"] .eyebrow { color: #52676c; }
+html[data-theme="light"] .sidebar-footer, html[data-theme="light"] .app-footer { color: #52676c; }
 html[data-theme="light"] .app-topbar, html[data-theme="light"] .public-header { background: rgba(255,255,255,.9); border-color: #dfe8e9; }
 html[data-theme="light"] .topbar-kicker { color: #28474d; }
-html[data-theme="light"] .topbar-date { color: #61777c; }
+html[data-theme="light"] .topbar-date { color: #52676c; }
 html[data-theme="light"] .app-page-content :is(h1,h2,h3,h4,h5,legend) { color: #203a40; }
 html[data-theme="light"] .app-page-content :is(p,span,strong,small,label,dt,dd,li,th,td,summary) { color: #344f54; }
 html[data-theme="light"] .app-page-content a:not(.btn), html[data-theme="light"] .app-page-content .panel-link { color: #006a6e; }
@@ -1010,7 +1010,7 @@ html[data-theme="light"] .dashboard-welcome h1, html[data-theme="light"] .page-h
 html[data-theme="light"] .app-page-content :is(.stat-value,.active-plan-name,.exercise-card-content h3,.plan-card h3 a,.plan-day-heading h2,.plan-day-exercises strong,.plan-detail-title h1,.plan-detail-stats strong,.plan-exercise-main a,.planned-exercise-name,.planned-prescription,.planned-rest,.exercise-prescription-context a,.exercise-prescription-context strong,.workout-entry-heading h3,.workout-session-heading h2,.exercise-choice-content strong,.profile-identity h2,.profile-facts-grid article strong,.detail-summary-card article strong) { color: #203a40 !important; }
 html[data-theme="light"] .app-page-content :is(.stat-icon,.status-pill,.plan-exercise-day,.activity-marker,.shortcut-icon,.empty-state-icon,.ai-plan-icon,.planned-exercise-day-mark,.plan-exercises-total strong) { color: #087c67 !important; }
 html[data-theme="light"] .app-page-content :is(.status-pill,.plan-exercise-day,.activity-marker,.shortcut-icon,.empty-state-icon,.ai-plan-icon,.planned-exercise-day-mark,.plan-exercise-index,.plan-exercise-meta span,.plan-detail-meta span,.plan-detail-badges span,.planned-day-badge,.exercise-muscle-tags span,.profile-tag-list span) { background: #eaf5f3 !important; border-color: #cfe4e1 !important; }
-html[data-theme="light"] .app-page-content :is(.stat-label,.stat-footnote,.panel-description,.activity-chart-count,.activity-chart-label,.chart-legend,.legend-caption,.activity-entry-main span,.activity-entry-result span,.recent-activity-item time,.plan-exercise-dose,.plan-card-goal,.plan-card-meta,.plan-source,.plan-day-exercises span,.selection-hint,.exercise-instructions,.exercise-attribution,.catalog-status,.profile-identity > div > span,.profile-facts-grid article > span,.profile-photo-card p,.plan-detail-meta span,.planned-prescription small,.planned-rest small,.workout-entry-fields small,.exercise-prescription-context > span) { color: #60777c !important; }
+html[data-theme="light"] .app-page-content :is(.stat-label,.stat-footnote,.panel-description,.activity-chart-count,.activity-chart-label,.chart-legend,.legend-caption,.activity-entry-main span,.activity-entry-result,.activity-entry-result span,.recent-activity-item time,.plan-exercise-dose,.plan-card-goal,.plan-card-meta,.plan-source,.plan-day-exercises span,.selection-hint,.exercise-instructions,.exercise-attribution,.catalog-status,.profile-identity > div > span,.profile-facts-grid article > span,.profile-photo-card p,.plan-detail-meta span,.planned-prescription small,.planned-rest small,.workout-entry-fields small,.exercise-prescription-context > span) { color: #465d62 !important; }
 html[data-theme="light"] .app-page-content :is(.activity-chart,.recent-activity-item,.plan-exercise-item,.dashboard-shortcuts > a,.plan-day-card-header,.plan-day-exercises article,.plan-exercise-meta,.exercise-prescription-context,.workout-entry-heading) { border-color: #dce7e8 !important; }
 html[data-theme="light"] .app-page-content :is(.activity-chart,.activity-chart-bar) { background-color: #e8f0f1; }
 html[data-theme="light"] .app-page-content .activity-chart { background-image: repeating-linear-gradient(to bottom,transparent 0,transparent 47px,rgba(40,83,90,.08) 48px,transparent 49px); }
@@ -1094,7 +1094,7 @@ html[data-theme="light"] .profile-form-card { color:#203a40; background:#fff; bo
 html[data-theme="light"] .profile-form-section, html[data-theme="light"] .profile-photo-section { background:#f7fafb; border-color:#dce7e8; }
 html[data-theme="light"] .profile-form-section-heading h2, html[data-theme="light"] .profile-equipment-group h3 { color:#203a40; }
 html[data-theme="light"] .profile-form-card .form-label, html[data-theme="light"] .profile-day-option, html[data-theme="light"] .profile-equipment-option { color:#344f54; }
-html[data-theme="light"] .profile-form-card .form-label small, html[data-theme="light"] .profile-duration-field > span { color:#60777c; }
+html[data-theme="light"] .profile-form-card .form-label small, html[data-theme="light"] .profile-duration-field > span { color:#52676c; }
 html[data-theme="light"] .profile-form-card .form-control, html[data-theme="light"] .profile-form-card .form-select { color:#203a40; background-color:#fff; }
 html[data-theme="light"] .profile-form-card .form-select option { color:#203a40; background:#fff; }
 html[data-theme="light"] .profile-day-option, html[data-theme="light"] .profile-equipment-option { background:#fff; border-color:#d4e1e3; }
@@ -1103,7 +1103,7 @@ html[data-theme="light"] .profile-equipment-group { background:#f7fafb; border-c
 html[data-theme="light"] .profile-photo { background:#eef4f5; border-color:#d7e4e5; }
 html[data-theme="light"] .progress-page { color:#203a40; --progress-grid:rgba(45,83,88,.2); }
 html[data-theme="light"] .progress-page :is(h1,h2,h3,strong) { color:#203a40; }
-html[data-theme="light"] .progress-page :is(.progress-intro,.progress-metric-label,.progress-metric-note,.progress-calculation-note,.progress-measurement-filter label,.progress-axis-label,.progress-table th,.progress-empty) { color:#60777c; }
+html[data-theme="light"] .progress-page :is(.progress-intro,.progress-metric-label,.progress-metric-note,.progress-calculation-note,.progress-measurement-filter label,.progress-axis-label,.progress-table th,.progress-empty) { color:#52676c; }
 html[data-theme="light"] .progress-metric, html[data-theme="light"] .progress-card { color:#203a40; background:#fff; border-color:#d9e5e7; box-shadow:0 8px 24px rgba(25,58,64,.06); }
 html[data-theme="light"] .progress-metric-value { color:#203a40; }
 html[data-theme="light"] .progress-calculation-note, html[data-theme="light"] .progress-measurement-filter, html[data-theme="light"] .progress-empty { background:#f7fafb; border-color:#dce7e8; }
@@ -1114,9 +1114,10 @@ html[data-theme="light"] .progress-calendar a { color:#344f54; }
 html[data-theme="light"] .progress-calendar a.has-workout { color:#fff; background:#087c67; }
 html[data-theme="light"] .progress-calendar a.has-workout:hover { background:#066b59; }
 html[data-theme="light"] .progress-table { --bs-table-color:#29464c; --bs-table-border-color:#dce8e9; }
+html[data-theme="light"] .progress-page .progress-table tbody tr { background:#fff; }
 /* Stronger accent and secondary copy for comfortable reading on light surfaces. */
 html[data-theme="light"] .app-page-content :is(.eyebrow,.page-heading-row .eyebrow,.dashboard-welcome .eyebrow,.panel-link,.planned-exercise-name,.plan-exercise-main a,.exercise-card-kicker,.exercise-instructions summary,.plan-detail-badges,.profile-tag-list,.exercise-muscle-tags,.status-pill,.plan-exercise-day,.plan-exercises-total strong,.shortcut-icon,.stat-icon,.active-plan-panel .panel-link) { color:#006a5c !important; }
-html[data-theme="light"] .app-page-content :is(.stat-label,.stat-footnote,.panel-description,.dashboard-welcome p:not(.eyebrow),.activity-chart-count,.activity-chart-label,.chart-legend,.legend-caption,.activity-entry-main span,.activity-entry-result span,.recent-activity-item time,.plan-exercise-dose,.plan-card-goal,.plan-card-meta,.plan-source,.plan-day-exercises span,.selection-hint,.exercise-instructions,.exercise-attribution,.catalog-status,.profile-identity > div > span,.profile-facts-grid article > span,.profile-photo-card p,.planned-prescription small,.planned-rest small,.workout-entry-fields small,.exercise-prescription-context > span) { color:#52696e !important; }
+html[data-theme="light"] .app-page-content :is(.stat-label,.stat-footnote,.panel-description,.dashboard-welcome p:not(.eyebrow),.activity-chart-count,.activity-chart-label,.chart-legend,.legend-caption,.activity-entry-main span,.activity-entry-result,.activity-entry-result span,.recent-activity-item time,.plan-exercise-dose,.plan-card-goal,.plan-card-meta,.plan-source,.plan-day-exercises span,.selection-hint,.exercise-instructions,.exercise-attribution,.catalog-status,.profile-identity > div > span,.profile-facts-grid article > span,.profile-photo-card p,.planned-prescription small,.planned-rest small,.workout-entry-fields small,.exercise-prescription-context > span) { color:#465d62 !important; }
 html[data-theme="light"] .app-page-content :is(.status-pill,.plan-exercise-day,.activity-marker,.shortcut-icon,.empty-state-icon,.ai-plan-icon,.planned-exercise-day-mark,.plan-exercise-index) { background-color:#e6f2ef !important; border-color:#c6ded8 !important; }
 @media (max-width:575.98px) { .topbar-actions { gap:.5rem; } .public-header nav { gap:.55rem; } }
 

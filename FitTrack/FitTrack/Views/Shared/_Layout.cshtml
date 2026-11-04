@@ -22,9 +22,9 @@
     }
     <title>@ViewData["Title"] - FitTrack</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FitTrack.styles.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body class="@(useAppShell ? "app-authenticated" : "app-public")">
 <a class="skip-link" href="#main-content">Skip to main content</a>
