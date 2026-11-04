@@ -35,7 +35,7 @@ public class AccountController : Controller
         if (result.Succeeded)
         {
             await EnsureProfileAsync(user);
-            await _signInManager.SignInAsync(user, isPersistent: false);
+            await _signInManager.SignInAsync(user, isPersistent: model.RememberMe);
             return RedirectToAction("Setup", "UserProfiles");
         }
         foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
@@ -55,15 +55,16 @@ public class AccountController : Controller
     {
         ViewData["ReturnUrl"] = returnUrl;
         if (!ModelState.IsValid) return View(model);
-        var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: true);
+        var loginIdentifier = model.UserName.Trim();
+        var user = await _userManager.FindByNameAsync(loginIdentifier)
+            ?? await _userManager.FindByEmailAsync(loginIdentifier);
+        var result = user?.UserName is not null
+            ? await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: true)
+            : Microsoft.AspNetCore.Identity.SignInResult.Failed;
         if (result.Succeeded)
         {
-            var user = await _userManager.FindByNameAsync(model.UserName);
-            if (user is not null)
-            {
-                var profile = await EnsureProfileAsync(user);
-                if (!profile.SetupCompleted) return RedirectToAction("Setup", "UserProfiles");
-            }
+            var profile = await EnsureProfileAsync(user!);
+            if (!profile.SetupCompleted) return RedirectToAction("Setup", "UserProfiles");
             return Url.IsLocalUrl(returnUrl) ? LocalRedirect(returnUrl!) : RedirectToAction("Dashboard", "Home");
         }
         ModelState.AddModelError(string.Empty, "Invalid login attempt.");
