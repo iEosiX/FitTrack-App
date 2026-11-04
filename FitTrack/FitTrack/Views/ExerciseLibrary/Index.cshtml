@@ -28,11 +28,32 @@
     </article></div>
 }
 </div>
-@if (Model.PageCount > 1)
-{
-    <nav class="mt-4" aria-label="Exercise library pages"><ul class="pagination justify-content-center">
-        <li class="page-item @(Model.Page == 1 ? "disabled" : "")"><a class="page-link" asp-action="Index" asp-route-search="@Model.Search" asp-route-muscle="@Model.Muscle" asp-route-category="@Model.Category" asp-route-equipment="@Model.Equipment" asp-route-page="@(Model.Page - 1)" aria-label="Previous page">Previous</a></li>
-        <li class="page-item disabled"><span class="page-link">Page @Model.Page of @Model.PageCount</span></li>
-        <li class="page-item @(Model.Page == Model.PageCount ? "disabled" : "")"><a class="page-link" asp-action="Index" asp-route-search="@Model.Search" asp-route-muscle="@Model.Muscle" asp-route-category="@Model.Category" asp-route-equipment="@Model.Equipment" asp-route-page="@(Model.Page + 1)" aria-label="Next page">Next</a></li>
-    </ul></nav>
+@{
+    var firstResult = Model.TotalItems == 0 ? 0 : (Model.Page - 1) * Model.PageSize + 1;
+    var lastResult = Math.Min(Model.Page * Model.PageSize, Model.TotalItems);
 }
+<div class="manual-exercise-pagination exercise-library-pagination" aria-label="Exercise page navigation">
+    <span>Showing @firstResult–@lastResult of @Model.TotalItems exercises</span>
+    @if (Model.PageCount > 1)
+    {
+        <div class="manual-page-controls">
+            @if (Model.Page == 1)
+            {
+                <span class="btn btn-outline-secondary btn-sm disabled" aria-disabled="true">← Previous</span>
+            }
+            else
+            {
+                <a class="btn btn-outline-secondary btn-sm" asp-action="Index" asp-route-search="@Model.Search" asp-route-muscle="@Model.Muscle" asp-route-category="@Model.Category" asp-route-equipment="@Model.Equipment" asp-route-page="@(Model.Page - 1)" aria-label="Previous page">← Previous</a>
+            }
+            <span>Page @Model.Page of @Model.PageCount</span>
+            @if (Model.Page == Model.PageCount)
+            {
+                <span class="btn btn-outline-secondary btn-sm disabled" aria-disabled="true">Next →</span>
+            }
+            else
+            {
+                <a class="btn btn-outline-secondary btn-sm" asp-action="Index" asp-route-search="@Model.Search" asp-route-muscle="@Model.Muscle" asp-route-category="@Model.Category" asp-route-equipment="@Model.Equipment" asp-route-page="@(Model.Page + 1)" aria-label="Next page">Next →</a>
+            }
+        </div>
+    }
+</div>

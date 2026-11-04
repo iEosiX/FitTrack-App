@@ -11,7 +11,7 @@
     <div asp-validation-summary="ModelOnly" class="manual-validation-summary alert alert-danger" role="alert"></div>
     <section class="manual-exercise-search app-card mb-4" aria-label="Find exercises">
         <div class="manual-search-field"><label asp-for="Search" class="form-label">Search exercises</label><input asp-for="Search" class="form-control" placeholder="Search by exercise name" /></div>
-        <label class="manual-show-all-toggle"><input type="checkbox" name="showAllExercises" value="true" checked="@(Model.ShowAllExercises ? "checked" : null)" /><span><strong>Show all library exercises</strong><small>Turn this on to include movements that use equipment not listed in your profile.</small></span></label>
+        <label class="manual-show-all-toggle"><input type="checkbox" name="showAllExercises" value="true" title="Turn this on to include movements that use equipment not listed in your profile." aria-describedby="show-all-exercises-hint" checked="@(Model.ShowAllExercises ? "checked" : null)" /><span><strong>Show all library exercises</strong><span id="show-all-exercises-hint" class="visually-hidden">Turn this on to include movements that use equipment not listed in your profile.</span></span></label>
         <div class="manual-search-actions"><button class="btn btn-outline-primary" type="submit" formmethod="get" formaction="@Url.Action("Manual")">Search</button><button class="btn btn-link" type="submit" name="clearSearch" value="true" formmethod="get" formaction="@Url.Action("Manual")">Clear</button></div>
     </section>
     <section class="app-card form-card manual-plan-details mb-4" aria-label="Plan details">

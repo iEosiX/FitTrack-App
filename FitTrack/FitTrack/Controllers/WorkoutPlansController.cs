@@ -114,6 +114,17 @@ public sealed class WorkoutPlansController(AppDbContext db, IExerciseApiService 
         return RedirectToAction(nameof(Details), new { id });
     }
 
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> Deactivate(int id, CancellationToken cancellationToken)
+    {
+        var profile = await CurrentProfileAsync(cancellationToken);
+        if (profile is null) return NotFound();
+        var plan = await db.WorkoutPlans.FirstOrDefaultAsync(item => item.Id == id && item.UserProfileId == profile.Id && item.IsActive, cancellationToken);
+        if (plan is null) return NotFound();
+        plan.IsActive = false;
+        await db.SaveChangesAsync(cancellationToken);
+        return RedirectToAction(nameof(Index));
+    }
     [HttpGet]
     public async Task<IActionResult> Complete(int id, DayOfWeek? weekday, CancellationToken cancellationToken)
     {

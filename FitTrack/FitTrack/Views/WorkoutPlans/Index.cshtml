@@ -38,7 +38,7 @@
                 <p class="text-secondary mb-3">@plan.Goal</p>
                 <div class="plan-meta"><span>Created @plan.CreatedAt.ToLocalTime().ToString("MMM d, yyyy")</span><span>@plan.PlanExercises.Select(item => item.DayOfTheWeek).Distinct().Count() training days</span></div>
                 <div class="plan-card-actions mt-3">
-                    @if (plan.IsActive) { <a class="btn btn-primary btn-sm" asp-action="Complete" asp-route-id="@plan.Id">Log a workout</a> }
+                    @if (plan.IsActive) { <a class="btn btn-primary btn-sm" asp-action="Complete" asp-route-id="@plan.Id">Log a workout</a><form asp-action="Deactivate" asp-route-id="@plan.Id" method="post" data-loading data-loading-label="Deactivating…"><button class="btn btn-outline-secondary btn-sm" type="submit">Deactivate</button></form> }
                     else { <form asp-action="Activate" asp-route-id="@plan.Id" method="post" data-loading data-loading-label="Activating…"><button class="btn btn-outline-primary btn-sm" type="submit">Activate plan</button></form> }
                     <a class="btn btn-light btn-sm" asp-action="Details" asp-route-id="@plan.Id">View details</a>
                     <form asp-action="Delete" asp-route-id="@plan.Id" method="post" data-confirm="Delete ‘@plan.Name’? This won’t remove workout history." class="ms-auto"><button class="btn btn-link btn-sm text-danger text-decoration-none" type="submit">Delete</button></form>
