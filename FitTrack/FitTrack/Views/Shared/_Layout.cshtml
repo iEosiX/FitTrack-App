@@ -38,7 +38,7 @@
             </a>
             <button id="mobile-nav-toggle" class="mobile-nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="app-navigation"><span aria-hidden="true">☰</span></button>
             <a class="sidebar-user" asp-controller="UserProfiles" asp-action="Index">
-                <img class="sidebar-avatar" src="~/images/default-profile.svg" alt="" />
+                @await Component.InvokeAsync("ProfileAvatar")
                 <span class="sidebar-user-info"><strong>@username</strong><small>Fitness profile</small></span>
             </a>
             <p class="sidebar-section-label">MAIN MENU</p>
