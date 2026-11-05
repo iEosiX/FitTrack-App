@@ -107,6 +107,9 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+// Uploaded profile photos are created after publish and aren't listed in the
+// build-time static asset manifest handled by MapStaticAssets.
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
